@@ -180,7 +180,7 @@ function sKsignUp() {
   const uri = "https://digi-tech-production.up.railway.app"
   http.open("POST", uri + "/sigup");
   http.setRequestHeader("Content-Type", "application/json");
-  const data = JSON.stringify(obj)
+  var data = JSON.stringify(obj)
   http.send(data);
 
   http.onreadystatechange = (e) => {
