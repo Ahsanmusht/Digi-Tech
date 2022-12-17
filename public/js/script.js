@@ -187,9 +187,9 @@ function sKsignUp() {
     if (Http.readyState === 4) {
       var jsonRes = JSON.parse(Http.responseText);
       if (Http.status === 200) {
-        alert("sucess " + jsonRes.message)
+        alert(jsonRes.message)
       } else {
-        alert("error " + jsonRes.message)
+        alert(jsonRes.message)
       }
     }
   }

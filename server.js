@@ -16,7 +16,7 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-app.post("/signup", (req, res, next) => {
+app.post("/", (req, res, next) => {
   signUpModel.findOne(
     {
       email: req.body.email,
