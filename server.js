@@ -5,8 +5,7 @@ const path = require("path");
 const port = process.env.PORT || 3000;
 const bycrypt = require("bcryptjs");
 const cors = require("cors")
-const bodyParser = require("body-parser");
-const { get } = require("http");
+const bodyParser = require("body-parser")
 
 
 app.use("/", express.static(path.resolve(path.join(__dirname, "./public"))));
@@ -26,9 +25,9 @@ app.post("/sigup", (req, res, next) => {
       if (err || data) {
         
           res.status(405).send({
-            message: "User Already Exists !",
+            message: "Please Make Another Account User Already Exists !",
           });
-          
+          return;
         }
        else {
         const saltRounds = 10;
@@ -95,11 +94,8 @@ app.post("/login", (req, res, next) => {
   })
   //   }
 })
-app.get("")
 
 app.listen(port, () => {
   console.log("server is running on", port)
 })
-
-
 
