@@ -177,7 +177,7 @@ function sKsignUp() {
     confPassword: document.getElementById("confirmpassword").value,
   }
   console.log(JSON.stringify(obj));
-  const uri = "http://localhost:3000"
+  const uri = "https://digi-tech-production.up.railway.app"
   http.open("POST", uri + "/sigup");
   http.setRequestHeader("Content-Type", "application/json");
   const data = JSON.stringify(obj)
