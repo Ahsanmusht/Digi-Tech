@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
-const db=process.env.DB
-mongoose.connect(db, { useNewUrlParser: true })
+// const db=process.env.DB
+mongoose.connect("mongodb+srv://Ahsanmushtaq:3102007kph0740@cluster0.byoh4nv.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true })
 mongoose.connection.on("connected", () => {
   console.log("mongoose connected sucessfully");
 })

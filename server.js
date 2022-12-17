@@ -26,7 +26,7 @@ app.post("/sigup", (req, res, next) => {
       if (err || data) {
         
           res.status(405).send({
-            message: "Please Make Another Account User Already Exists !",
+            message: "User Already Exists !",
           });
           return;
         }
