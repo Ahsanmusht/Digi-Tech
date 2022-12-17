@@ -28,7 +28,7 @@ app.post("/sigup", (req, res, next) => {
           res.status(405).send({
             message: "User Already Exists !",
           });
-          return;
+          
         }
        else {
         const saltRounds = 10;
