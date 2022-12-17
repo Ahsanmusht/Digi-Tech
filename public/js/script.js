@@ -168,7 +168,7 @@ function signUp() {
   }
 }
 function sKsignUp() {
-  const http = new XMLHttpRequest();
+  const Http = new XMLHttpRequest();
 
   var obj = {
     name: document.getElementById("name").value,
@@ -178,19 +178,18 @@ function sKsignUp() {
   }
   console.log(JSON.stringify(obj));
   const uri = "https://digi-tech-production.up.railway.app"
-  http.open("POST", uri + "/sigup");
-  http.setRequestHeader("Content-Type", "application/json");
-  var data = JSON.stringify(obj)
-  http.send(data);
+  Http.open("POST", uri + "/signup");
+  Http.setRequestHeader("Content-Type", "application/json");
+  Http.send(JSON.stringify(obj));
 
-  http.onreadystatechange = (e) => {
+  Http.onreadystatechange = (e) => {
     console.log(e)
-    if (http.readyState === 4) {
-      var jsonRes = JSON.parse(http.responseText);
-      if (http.status === 200) {
-        alert("sucess"+jsonRes.message)
+    if (Http.readyState === 4) {
+      var jsonRes = JSON.parse(Http.responseText);
+      if (Http.status === 200) {
+        alert("sucess " + jsonRes.message)
       } else {
-        alert("error"+jsonRes.message)
+        alert("error " + jsonRes.message)
       }
     }
   }

@@ -16,24 +16,24 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-app.post("/sigup", (req, res, next) => {
+app.post("/signup", (req, res, next) => {
   signUpModel.findOne(
     {
       email: req.body.email,
     },
     (err, data) => {
       if (err || data) {
-        
-          res.status(405).send({
-            message: "Please Make Another Account User Already Exists !",
-          });
-          return;
-        }
-       else {
+
+        res.status(405).send({
+          message: "Please Make Another Account User Already Exists !",
+        });
+        return;
+      }
+      else {
         const saltRounds = 10;
         bycrypt.genSalt(saltRounds, function (err, salt) {
           bycrypt.hash(req.body.password, salt, function (err, hash) {
-            
+
             console.log(hash);
 
             var newSignUpPerson = signUpModel({
@@ -64,12 +64,7 @@ app.post("/sigup", (req, res, next) => {
 });
 
 app.post("/login", (req, res, next) => {
-
-  //   if(!req.body.Name || !req.body.email) {
-  //     res.status(404).send({
-  //         message: "wrong email"
-  //     })
-  stdModel.findOne({ email: req.body.email }, (err, data) => {
+  signUpModel.findOne({ email: req.body.email }, (err, data) => {
     if (!err) {
       if (data.email === req.body.email && data.password === req.body.password) {
         res.status(200).send({
