@@ -5,7 +5,8 @@ const path = require("path");
 const port = process.env.PORT || 3000;
 const bycrypt = require("bcryptjs");
 const cors = require("cors")
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
+const { get } = require("http");
 
 
 app.use("/", express.static(path.resolve(path.join(__dirname, "./public"))));
@@ -94,7 +95,11 @@ app.post("/login", (req, res, next) => {
   })
   //   }
 })
+app.get("")
 
 app.listen(port, () => {
   console.log("server is running on", port)
 })
+
+
+
