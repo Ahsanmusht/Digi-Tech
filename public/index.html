@@ -38,7 +38,7 @@
             <div id="search-btn" class="fas fa-search"></div>
             <a href="#" class="fas fa-heart"></a>
             <a href="#" class="fas fa-shopping-cart"></a>
-            <div id="login-btn" class="fas fa-user"></div>
+            <a href="signup.html" class="fas fa-user"></a>
         </div>
 
     </div>
@@ -50,6 +50,7 @@
             <a href="#arrivals">arrivals</a>
             <a href="#reviews">reviews</a>
             <a href="#blogs">blogs</a>
+            <a href="./dashboard.html">Dashboard</a>
         </nav>
     </div>
 
@@ -72,28 +73,7 @@
 <div class="login-form-container">
 
     <div id="close-login-btn" class="fas fa-times"></div>
-
-    <form action="">
-        <h3>sign in</h3>
-        <span>username</span>
-        <input type="text" name="" id="name" class="box" placeholder="enter your username" id="">
-        <span>Email</span>
-        <input type="email" name="" id="email" class="box" placeholder="enter your email" id="">
-        <span>password</span>
-        <input type="password" name="" id="password" class="box" placeholder="enter your password" id="">
-        <span>confirm password</span>
-        <input type="password" name="" id="confirmpassword" class="box" placeholder="enter your password" id="">
-        <div class="checkbox">
-            <input type="checkbox" name="" id="remember-me">
-            <label for="remember-me"> remember me</label>
-        </div>
-        <input onclick="return sKsignUp()" type="submit" value="sign in" class="btn">
-        <p>forget password ? <a href="#">click here</a></p>
-        <p>don't have an account ? <a href="#">create one</a></p>
-    </form>
-
 </div>
-
 <!-- home section starts  -->
 
 <section class="home" id="home">
@@ -739,7 +719,6 @@
     </div>
 
 </section>
-
 <!-- blogs section ends -->
 
 <!-- footer section starts  -->
@@ -801,11 +780,18 @@
 
     <!-- js file link -->
 
-    <script src="./js/script.js"></script>
+    <script src="./script.js"></script>
+
 
     <!-- swiper js link -->
     
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+    <!-- axios cdn link -->
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </body>
 </html>

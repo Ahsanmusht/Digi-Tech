@@ -4,19 +4,14 @@ const { signUpModel } = require("./src/database/Connection");
 const path = require("path");
 const port = process.env.PORT || 3000;
 const bycrypt = require("bcryptjs");
-const cors = require("cors")
-const bodyParser = require("body-parser")
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const axios = require("axios");
+const jwt = require("jsonwebtoken");
 
-
-app.use("/", express.static(path.resolve(path.join(__dirname, "./public"))));
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
 app.use(bodyParser.json());
-app.post("/", (req, res, next) => {
+app.use("/", express.static(path.resolve(path.join(__dirname, "public"))));
+app.post("/signUp", (req, res, next) => {
   signUpModel.findOne(
     {
       email: req.body.email,
@@ -65,30 +60,89 @@ app.post("/", (req, res, next) => {
 
 app.post("/login", (req, res, next) => {
   signUpModel.findOne({ email: req.body.email }, (err, data) => {
-    if (!err) {
-      if (data.email === req.body.email && data.password === req.body.password) {
-        res.status(200).send({
-          message: "login sucess",
-          data: data
-
-        })
-        return;
-      } else {
-        res.send({
-          message: "ur password is wrong"
-        })
+    if (data) {
+      if (data.email === req.body.email) {
+        bycrypt.compare(req.body.password, data.password, (err, isFound) => {
+          if (isFound) {
+            res.status(200).send({
+              data: "  Welcome To Our Website ! ",
+            });
+          } else {
+            res.status(405).send({
+              message: "Invalid Is Incorrect  !",
+            });
+          }
+        });
+      }
+      else {
+        res.status(405).send({
+          message: "Password is Incorrect !",
+        });
       }
     } else {
-
-      res.status(404).send({
-        message: "not found"
-      })
-
-
+      res.status(405).send({
+        message: "Email is Inccorect !",
+      });
+    }
+  });
+});
+app.get("/signUpData", (req, res, next) => {
+  const data = signUpModel.find({}, (err, data) => {
+    if (!err) {
+      res.send(data)
+    } else {
+      res.send(err)
     }
   })
-  //   }
 })
+
+
+
+app.delete("/user/:id", (req, res, next) => {
+  signUpModel.findByIdAndDelete(req.params.id, (err, data) => {
+    if (!err) {
+      res.send({
+        message: "user deleted"
+      })
+    }
+    else {
+      res.send({
+        message: "error"
+      })
+    }
+  })
+});
+
+app.put("/user/:id", (req, res, next) => {
+  signUpModel.findByIdAndUpdate(req.params.id, (err, data) => {
+    let updateobj = {}
+
+    if (req.body.name) {
+      updateobj.name = req.body.name
+    }
+    if (req.body.eemail) {
+      updateobj.email = req.body.email
+    }
+    if (req.body.password) {
+      updateobj.password = req.body.password
+    }
+    if (req.body.confPassword) {
+      updateobj.confPassword = req.body.confPassword
+    } else {
+      signUpModel.findByIdAndUpdate(req.params.id, updateobj, (err, data) => {
+        if (!err) {
+          res.send({
+            message: "usere updated"
+          })
+        } else {
+          res.send({
+            message: "user not updated"
+          })
+        }
+      })
+    }
+  })
+});
 
 app.listen(port, () => {
   console.log("server is running on", port)
