@@ -12,19 +12,19 @@ const cookieParser = require('cookie-parser');
 
 app.use(cookieParser());
 
-app.get('/signup', (req, res) => {
-  res.cookie('name', req.query.name, { maxAge: 900000, httpOnly: true });
-  res.send('Cookie has been set');
-});
+// app.get('/signup', (req, res) => {
+//   res.cookie('name', req.query.name, { maxAge: 900000, httpOnly: true });
+//   res.send('Cookie has been set');
+// });
 
 
-app.get('/', (req, res) => {
-  if (req.cookies.name) {
-    res.send(`Welcome back, ${req.cookies.name}`);
-  } else {
-    res.send('You must sign up first');
-  }
-});
+// app.get('/', (req, res) => {
+//   if (req.cookies.name) {
+//     res.send(`Welcome back, ${req.cookies.name}`);
+//   } else {
+//     res.send('You must sign up first');
+//   }
+// });
 
 app.use(bodyParser.json());
 app.use("/", express.static(path.resolve(path.join(__dirname, "public"))));
