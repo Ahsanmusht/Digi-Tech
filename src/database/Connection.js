@@ -1,7 +1,7 @@
 
 const mongoose = require("mongoose");
 
-mongoose.set('strictQuery' , true);
+mongoose.set('strictQuery' , false);
 
 const db="mongodb+srv://Ahsanmushtaq:3102007kph0740@cluster0.byoh4nv.mongodb.net/?retryWrites=true&w=majority"
 mongoose.connect(db , { useNewUrlParser: true, useUnifiedTopology : true})
