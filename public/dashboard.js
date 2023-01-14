@@ -56,7 +56,7 @@ function delete_data(id) {
   const Http = new XMLHttpRequest();
   Http.open("DELETE", url + `/user/${id}`);
   Http.setRequestHeader("Content-Type", "application/json");
-  Http.send(null);
+  // Http.send(null);
   Http.onreadystatechange = (e) => {
     console.log(e);
     if (Http.readyState === 4) {
