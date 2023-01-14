@@ -1,5 +1,6 @@
-var port = "http://localhost:3000"
+// var port = "https://digi-tech-production-9eb5.up.railway.app"
 
+var port = "http://localhost:3000"
 function Login() {
     var obj = {
       email: document.getElementById("email").value,
@@ -13,7 +14,7 @@ function Login() {
       if (Http.readyState === 4) {
         let jsonRes = JSON.parse(Http.responseText);
         if (Http.status === 200) {
-          alert("Good job!", jsonRes.data , "success");
+          alert(jsonRes.data , "success");
           setInterval(function () {
             window.location.href = "./index.html";
           }, 3000);
@@ -21,13 +22,13 @@ function Login() {
           return;
         }
         else if (Http.status === 201) {
-          alert("Good job!", jsonRes.email , "success");
+          alert( jsonRes.message);
           setInterval(() => {
             window.location.href = "./dashboard.html"  
           }, 3000);
         }
         else {
-          alert("Opps!", jsonRes.message, "error");
+          alert(jsonRes.message);
           console.log(jsonRes.message);
         }
       }

@@ -8,6 +8,23 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+
+app.get('/signup', (req, res) => {
+  res.cookie('name', req.query.name, { maxAge: 900000, httpOnly: true });
+  res.send('Cookie has been set');
+});
+
+
+app.get('/', (req, res) => {
+  if (req.cookies.name) {
+    res.send(`Welcome back, ${req.cookies.name}`);
+  } else {
+    res.send('You must sign up first');
+  }
+});
 
 app.use(bodyParser.json());
 app.use("/", express.static(path.resolve(path.join(__dirname, "public"))));
@@ -60,32 +77,96 @@ app.post("/signUp", (req, res, next) => {
 
 app.post("/login", (req, res, next) => {
   signUpModel.findOne({ email: req.body.email }, (err, data) => {
+    console.log(data)
     if (data) {
       if (data.email === req.body.email) {
         bycrypt.compare(req.body.password, data.password, (err, isFound) => {
           if (isFound) {
+            console.log(isFound)
+            const token = jwt.sign({
+              email: req.body.email,
+              password: req.body.password
+            }, "kiojlyuioplkjmiouiytrewqasdfcxzvg")
+            res.cookie("jwToken", token, {
+              maxAge: 86_400_000,
+              httpOnly: true,
+            })
             res.status(200).send({
-              data: "  Welcome To Our Website ! ",
+              data: data.name + "  Welcome To Our Website ! ",
             });
           } else {
             res.status(405).send({
-              message: "Invalid Is Incorrect  !",
+              message: "The Password Is Incorrect  !",
             });
           }
         });
-      }
-      else {
+      } else {
         res.status(405).send({
           message: "Password is Incorrect !",
         });
       }
+    } else if (
+      req.body.email === "admin@gmail.com" &&
+      req.body.password === "admin"
+    ) {
+      //Sending Message to Fornt End With Status  Of 201
+      res.status(201).send({
+        message: "Syed Tariq Ahmed  Admin Welcome To Admin Page !",
+      });
+      return;
     } else {
+      //Sending Message to Fornt End With Status  Of 405
       res.status(405).send({
         message: "Email is Inccorect !",
       });
     }
   });
 });
+
+// app.use((req, res, next) => {
+//   if (!req.cookies.jWToken) {
+//     res.status(401).send({
+//       message: "Wrong Token",
+//     });
+//     return; 5
+//   }
+//   jwt.verify(
+//     req.cookies, jwToken, (err, decodeData) => {
+//       if (!err) {
+//         console.log("hellollo");
+//         const issueDate = decodeData.iat * 1000;
+//         const nowDate = new Date().getTime();
+//         const diff = nowDate - issueDate; // 86400,000
+//         console.log(diff);
+//         if (diff > 300000) {
+//           res.status(401).send({
+//             message: "Token Expired",
+//           });
+//         } else {
+//           var token = jwt.sign(
+//             {
+//               id: decodeData.id,
+//               email: decodeData.email,
+//               password: decodeData.password,
+//             },
+//             jwToken
+//           );
+//           res.cookie("jWToken", token, {
+//             maxAge: 86_400_000,
+//             httpOnly: true,
+//           });
+//           req.body.jWToken = decodeData;
+//           next();
+//         }
+//       } else {
+//         res.status(401).send({
+//           message: "invalid token",
+//         });
+//       }
+//     }
+//   );
+// });
+
 app.get("/signUpData", (req, res, next) => {
   const data = signUpModel.find({}, (err, data) => {
     if (!err) {
@@ -113,35 +194,26 @@ app.delete("/user/:id", (req, res, next) => {
   })
 });
 
-app.put("/user/:id", (req, res, next) => {
-  signUpModel.findByIdAndUpdate(req.params.id, (err, data) => {
-    let updateobj = {}
-
-    if (req.body.name) {
-      updateobj.name = req.body.name
+app.put("/update/:id", (req, res) => {
+  signUpModel.findOneAndUpdate(
+    { id: req.params.id },
+    {
+      $set: {
+        name: req.body.name,
+        email: req.body.email
+      },
     }
-    if (req.body.eemail) {
-      updateobj.email = req.body.email
-    }
-    if (req.body.password) {
-      updateobj.password = req.body.password
-    }
-    if (req.body.confPassword) {
-      updateobj.confPassword = req.body.confPassword
-    } else {
-      signUpModel.findByIdAndUpdate(req.params.id, updateobj, (err, data) => {
-        if (!err) {
-          res.send({
-            message: "usere updated"
-          })
-        } else {
-          res.send({
-            message: "user not updated"
-          })
-        }
-      })
-    }
-  })
+  )
+    .then((data) => {
+      res.status(200).send({
+        message: "User Updated !",
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err,
+      });
+    });
 });
 
 app.listen(port, () => {

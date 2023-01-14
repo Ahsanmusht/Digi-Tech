@@ -1,4 +1,4 @@
-var port = "http://localhost:3000"
+var port = 'http://localhost:3000'
 const signUp = () => {
     console.log("Hello")
     var obj = {
@@ -17,7 +17,7 @@ const signUp = () => {
         setInterval(() => {
             window.location.href = "./login.html"
         }, 3000);
-        console.log(response.data.message)
+        console.log(response)
         alert(response.data.message)
     }).catch((err) => {
         alert(err.response.data.message)
