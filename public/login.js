@@ -1,6 +1,6 @@
 // var port = "https://digi-tech-production-9eb5.up.railway.app"
 
-var port = "digi-tech-production-9eb5.up.railway.app"
+var port = "https://digi-tech-production-9eb5.up.railway.app"
 function Login() {
     var obj = {
       email: document.getElementById("email").value,
