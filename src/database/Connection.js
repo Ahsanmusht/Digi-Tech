@@ -1,13 +1,25 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://Ahsan:kph07403102007@dynamic.u7gfsnh.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true })
-mongoose.connection.on("connected", () => {
-  console.log("mongoose connected sucessfully");
-})
-mongoose.connection.on("disconnected", () => {
-  console.log("mongoose not connected sucessfully");
-  process.exit(1);
-})
+mongoose.connect('mongodb+srv://Ahsan:kph07403102007@dynamic.u7gfsnh.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true });
+
+mongoose.connection.on('connected', () => {
+  console.log('Mongoose default connection open');
+});
+
+mongoose.connection.on('error', (err) => {
+  console.log(`Mongoose default connection error: ${err}`);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('Mongoose default connection disconnected');
+});
+
+process.on('SIGINT', () => {
+  mongoose.connection.close(() => {
+    console.log('Mongoose default connection disconnected through app termination');
+    process.exit(0);
+  });
+});
 
 var signUpschema = new mongoose.Schema({
   name: String,
