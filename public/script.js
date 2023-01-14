@@ -236,7 +236,7 @@ window.onload = () => {
   //####################### SECOND SUCESSFULL METHOD #####################
 
 
-const port = "http://digi-tech-production-9eb5.up.railway.app"
+const port = "https://digi-tech-production-9eb5.up.railway.app"
 
 const sKSignUp = () => {
   console.log("click");

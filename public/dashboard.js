@@ -1,4 +1,4 @@
-const url = "http://digi-tech-production-9eb5.up.railway.app";
+const url = "https://digi-tech-production-9eb5.up.railway.app";
 
 function getData() {
   var showdata = document.getElementById("showdata");
