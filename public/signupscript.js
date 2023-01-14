@@ -1,4 +1,4 @@
-var port = 'http://localhost:3000'
+var port = 'digi-tech-production-9eb5.up.railway.app'
 const signUp = () => {
     console.log("Hello")
     var obj = {

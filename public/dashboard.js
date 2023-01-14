@@ -1,4 +1,4 @@
-const url = "http://localhost:3000";
+const url = "digi-tech-production-9eb5.up.railway.app";
 
 function getData() {
   var showdata = document.getElementById("showdata");
@@ -52,7 +52,7 @@ getData();
 // }
 
 function delete_data(id) {
-  const url = "http://localhost:3000";
+  const url = "digi-tech-production-9eb5.up.railway.app";
   const Http = new XMLHttpRequest();
   Http.open("DELETE", url + `/user/${id}`);
   Http.setRequestHeader("Content-Type", "application/json");
@@ -87,7 +87,7 @@ function getting_data(_id, name, email) {
   `;
 }
 function updating_data(id) {
-  const url = "http://localhost:3000";
+  const url = "digi-tech-production-9eb5.up.railway.app";
   const Http = new XMLHttpRequest();
   Http.open("PUT", url + `/update/${id}`);
   Http.setRequestHeader("Content-Type", "application/json");
