@@ -21,7 +21,7 @@ process.on('SIGINT', () => {
   });
 });
 
-var signUpschema = new mongoose.Schema({
+var signUpschema = mongoose.Schema({
   name: String,
   email: String,
   password: String,
