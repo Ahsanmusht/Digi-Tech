@@ -52,7 +52,7 @@ getData();
 // }
 
 function delete_data(id) {
-  const url = "http://localhost:3000";
+  const url = "https://digi-tech-production-9eb5.up.railway.app";
   const Http = new XMLHttpRequest();
   Http.open("DELETE", url + `/user/${id}`);
   Http.setRequestHeader("Content-Type", "application/json");
