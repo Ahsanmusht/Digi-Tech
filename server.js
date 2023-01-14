@@ -12,20 +12,6 @@ const cookieParser = require('cookie-parser');
 
 app.use(cookieParser());
 
-// app.get('/signup', (req, res) => {
-//   res.cookie('name', req.query.name, { maxAge: 900000, httpOnly: true });
-//   res.send('Cookie has been set');
-// });
-
-
-// app.get('/', (req, res) => {
-//   if (req.cookies.name) {
-//     res.send(`Welcome back, ${req.cookies.name}`);
-//   } else {
-//     res.send('You must sign up first');
-//   }
-// });
-
 app.use(bodyParser.json());
 app.use("/", express.static(path.resolve(path.join(__dirname, "public"))));
 app.post("/signUp", (req, res, next) => {
@@ -111,7 +97,7 @@ app.post("/login", (req, res, next) => {
     ) {
       //Sending Message to Fornt End With Status  Of 201
       res.status(201).send({
-        message: "Syed Tariq Ahmed  Admin Welcome To Admin Page !",
+        message: "Welcome To Admin Page !",
       });
       return;
     } else {

@@ -1,4 +1,4 @@
-const url = "https://digi-tech-production-9eb5.up.railway.app";
+const url = "http://digi-tech-production-9eb5.up.railway.app";
 
 function getData() {
   var showdata = document.getElementById("showdata");
@@ -52,11 +52,11 @@ getData();
 // }
 
 function delete_data(id) {
-  const url = "https://digi-tech-production-9eb5.up.railway.app";
+  const url = "http://localhost:3000";
   const Http = new XMLHttpRequest();
   Http.open("DELETE", url + `/user/${id}`);
   Http.setRequestHeader("Content-Type", "application/json");
-  // Http.send(null);
+  Http.send(null);
   Http.onreadystatechange = (e) => {
     console.log(e);
     if (Http.readyState === 4) {

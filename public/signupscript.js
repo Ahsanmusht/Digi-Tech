@@ -1,4 +1,5 @@
-var port = 'https://digi-tech-production-9eb5.up.railway.app'
+
+var port = 'http://digi-tech-production-9eb5.up.railway.app'
 const signUp = () => {
     console.log("Hello")
     var obj = {
@@ -18,9 +19,9 @@ const signUp = () => {
             window.location.href = "./login.html"
         }, 3000);
         console.log(response)
-        alert(response.data.message)
+        alert(response.data.message);
     }).catch((err) => {
-        alert(err.response.data.message)
+        alert(err.response.data.message);
         console.log(err.response.data.message);
     })
     return false;
