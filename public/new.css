@@ -206,7 +206,7 @@ h2 {
   clear: both; }
 
 body {
-  background: url(../images/r.webp);
+  background: url(./img/r.webp);
   background-size: cover;
   background-position: center;
   font-size: 13px;
