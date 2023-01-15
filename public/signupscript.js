@@ -16,7 +16,7 @@ const signUp = () => {
         confPassword: obj.confPassword
     }).then((response) => {
         setInterval(() => {
-            window.location.href = "./login.html"
+            window.location.href = "login.html"
         }, 3000);
         console.log(response)
         alert(response.data.message);
