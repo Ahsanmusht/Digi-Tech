@@ -28,8 +28,8 @@ var upload = multer({
 }).single('image');
 
 app.post("/upload", (req,res) =>{
-  var ImageFile = req.file.fieldname;
-  var Sucess = req.file.fieldname+ "Image sucessfully Uploaded";
+  var ImageFile = req.file.filename;
+  var Sucess = req.file.filename+ "Image sucessfully Uploaded";
 
   var ImageDetails = new UploadModel({
     imagename: ImageFile,
@@ -71,7 +71,7 @@ app.post("/signUp", upload, (req, res, next) => {
               email: req.body.email,
               password: hash,
               confPassword: hash,
-              image: req.body.image,
+              image: req.file.filename,
             });
             newSignUpPerson.save((err, data) => {
               if (!err) {
