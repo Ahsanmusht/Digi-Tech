@@ -9,12 +9,44 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
+const multer = require("multer");
 
 app.use(cookieParser());
 
 app.use(bodyParser.json());
 app.use("/", express.static(path.resolve(path.join(__dirname, "public"))));
-app.post("/signUp", (req, res, next) => {
+
+var Storage = multer.diskStorage({
+  destination: "public/uploads/",
+  filename:(req,file,cb)=>{
+    cb(null,file.fieldname+ "_"+Date.now()+path.extname(file.originalname));
+  }
+});
+
+var upload = multer({
+  storage:Storage
+}).single('image');
+
+app.post("/upload", (req,res) =>{
+  var ImageFile = req.file.fieldname;
+  var Sucess = req.file.fieldname+ "Image sucessfully Uploaded";
+
+  var ImageDetails = new UploadModel({
+    imagename: ImageFile,
+  });
+
+  ImageDetails.save((err, doc) =>{
+    if(!err) throw err;
+
+
+    imageData.exec((err, data) =>{
+        if(!err) throw err;
+        res.render("upload-file", {title: 'upload-file'})
+    });
+  });
+});
+
+app.post("/signUp", upload, (req, res, next) => {
   signUpModel.findOne(
     {
       email: req.body.email,
@@ -38,7 +70,8 @@ app.post("/signUp", (req, res, next) => {
               name: req.body.name,
               email: req.body.email,
               password: hash,
-              confPassword: hash
+              confPassword: hash,
+              image: req.body.image,
             });
             newSignUpPerson.save((err, data) => {
               if (!err) {
