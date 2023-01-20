@@ -19,13 +19,13 @@ app.use("/", express.static(path.resolve(path.join(__dirname, "public"))));
 var Storage = multer.diskStorage({
   destination: "public/uploads/",
   filename:(req,file,cb)=>{
-    cb(null,file.fieldname+ "_"+Date.now()+path.extname(file.originalname));
+    cb(null, file.originalname);
   }
 });
 
 var upload = multer({
   storage:Storage
-}).single('image');
+});
 
 app.post("/upload", (req,res) =>{
   var ImageFile = req.file.filename;
@@ -46,7 +46,7 @@ app.post("/upload", (req,res) =>{
   });
 });
 
-app.post("/signUp", upload, (req, res, next) => {
+app.post("/signUp", upload.single(''), (req, res, next) => {
   signUpModel.findOne(
     {
       email: req.body.email,
