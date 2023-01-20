@@ -27,24 +27,24 @@ var upload = multer({
   storage:Storage
 });
 
-app.post("/upload", (req,res) =>{
-  var ImageFile = req.file.filename;
-  var Sucess = req.file.filename+ "Image sucessfully Uploaded";
+// app.post("/upload", (req,res) =>{
+//   var ImageFile = req.file.filename;
+//   var Sucess = req.file.filename+ "Image sucessfully Uploaded";
 
-  var ImageDetails = new UploadModel({
-    imagename: ImageFile,
-  });
+//   var ImageDetails = new UploadModel({
+//     imagename: ImageFile,
+//   });
 
-  ImageDetails.save((err, doc) =>{
-    if(!err) throw err;
+//   ImageDetails.save((err, doc) =>{
+//     if(!err) throw err;
 
 
-    imageData.exec((err, data) =>{
-        if(!err) throw err;
-        res.render("upload-file", {title: 'upload-file'})
-    });
-  });
-});
+//     imageData.exec((err, data) =>{
+//         if(!err) throw err;
+//         res.render("upload-file", {title: 'upload-file'})
+//     });
+//   });
+// });
 
 app.post("/signUp", upload.single('image'), (req, res, next) => {
   signUpModel.findOne(
