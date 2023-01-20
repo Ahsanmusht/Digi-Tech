@@ -7,13 +7,15 @@ const signUp = () => {
         email: document.getElementById("email").value,
         password: document.getElementById("password").value,
         confPassword: document.getElementById("confPassword").value,
+        image: document.getElementById("image").value,
     }
 
     axios.post(port + '/signUp', {
         name: obj.name,
         email: obj.email,
         password: obj.password,
-        confPassword: obj.confPassword
+        confPassword: obj.confPassword,
+        image:obj.image
     }).then((response) => {
         setInterval(() => {
             window.location.href = "login.html"
