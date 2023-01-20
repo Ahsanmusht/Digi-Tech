@@ -25,7 +25,8 @@ var Storage = multer.diskStorage({
 
 var upload = multer({
   storage:Storage
-});
+  
+}).single('image');
 
 // app.post("/upload", (req,res) =>{
 //   var ImageFile = req.file.filename;
@@ -46,7 +47,7 @@ var upload = multer({
 //   });
 // });
 
-app.post("/signUp", upload.single('image'), (req, res, next) => {
+app.post("/signUp", upload, (req, res, next) => {
   signUpModel.findOne(
     {
       email: req.body.email,
