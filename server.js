@@ -46,7 +46,7 @@ app.post("/upload", (req,res) =>{
   });
 });
 
-app.post("/signUp", upload.single(''), (req, res, next) => {
+app.post("/signUp", upload.single('image'), (req, res, next) => {
   signUpModel.findOne(
     {
       email: req.body.email,
