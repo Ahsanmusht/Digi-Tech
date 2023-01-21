@@ -20,17 +20,9 @@ var signUpschema = new mongoose.Schema({
   confPassword: String,
 });
 
-var imageSchema = new mongoose.Schema({
-  image: {
-    data : Buffer,
-    contentType : String
-  }
-})
 
 var signUpModel = mongoose.model("user", signUpschema);
-var imageModel = mongoose.model("DP", imageSchema);
 
 module.exports = {
   signUpModel : signUpModel,
-  imageModel : imageModel
 };

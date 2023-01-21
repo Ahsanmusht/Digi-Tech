@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const { signUpModel, imageModel } = require("./src/database/Connection");
+const { signUpModel } = require("./src/database/Connection");
+const { imageModel } = require("./src/database/images.model");
 const path = require("path");
 const port = process.env.PORT || 3000;
 const bycrypt = require("bcryptjs");
@@ -28,7 +29,7 @@ var upload = multer({
   
 }).single('image');
 
-app.post("/upload", (req,res) =>{
+app.post("/upload", upload, (req,res) =>{
   upload(req, res , (err) =>{
     if(err) {
       console.log(err);

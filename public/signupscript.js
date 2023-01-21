@@ -15,24 +15,9 @@ const signUp = () => {
         password: obj.password,
         confPassword: obj.confPassword
     }).then((response) => {
-        // setInterval(() => {
-        //     window.location.href = "login.html"
-        // }, 3000);
-        var imgObj = {
-            image: document.getElementById("image").value
-    
-        }
-        console.log(imgObj);
-    
-        axios.post(port + '/upload', {
-            image: imgObj.image,
-        }).then((response) => {
-            console.log(response.data.message)
-            alert(response.data.message)
-        }).catch((err) => {
-            console.log(err.response.data.message);
-        })
-    
+        setInterval(() => {
+            window.location.href = "login.html"
+        }, 3000);
         console.log(response)
         alert(response.data.message);
     }).catch((err) => {
@@ -42,6 +27,20 @@ const signUp = () => {
 
 
     // console.log("click");
-   
+    var imgObj = {
+        image: document.getElementById("image").value
+
+    }
+    console.log(imgObj);
+
+    axios.post(port + '/upload', {
+        image: imgObj.image,
+    }).then((response) => {
+        console.log(response.data.message)
+        alert(response.data.message)
+    }).catch((err) => {
+        console.log(err.response.data.message);
+    })
+
     return false;
 }
