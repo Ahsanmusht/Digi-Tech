@@ -13,7 +13,7 @@ const multer = require("multer");
 const LocalStorage = require('local-storage');
 
 app.use(cookieParser());
-var imageData = uploadModel.find({})
+// var imageData = uploadModel.find({})
 
 app.use(bodyParser.json());
 app.use("/", express.static(path.resolve(path.join(__dirname, "public"))));
