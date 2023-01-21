@@ -23,6 +23,19 @@
 	--White: #FFFFFF;
 }
 
+::-webkit-scrollbar{
+	width: 1rem;
+}
+
+
+::-webkit-scrollbar-track{
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+	background: var(--Natural-Yellow);
+}
+
 body {
 	background: var(--bg-color);
 	color: var(--text-color);

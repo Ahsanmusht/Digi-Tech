@@ -18,12 +18,16 @@ var signUpschema = new mongoose.Schema({
   email: String,
   password: String,
   confPassword: String,
-  image:String,
 });
 
-var signUpModel = mongoose.model("user", signUpschema);
+var imageSchema = new mongoose.Schema({
+  image: Buffer
+})
 
+var signUpModel = mongoose.model("user", signUpschema);
+var imageModel = mongoose.model("DP", imageSchema);
 
 module.exports = {
-  signUpModel: signUpModel
+  signUpModel : signUpModel,
+  imageModel : imageModel
 };
