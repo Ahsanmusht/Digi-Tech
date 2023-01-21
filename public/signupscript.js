@@ -31,6 +31,8 @@ const signUp = () => {
         image: document.getElementById('image').value
 
     }
+    console.log(imgObj);
+    
     axios.post(port + '/upload', {
         image: imgObj.image,
     }).then((response) => {
