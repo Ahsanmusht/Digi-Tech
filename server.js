@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const { signUpModel } = require("./src/database/Connection");
-const { imageModel } = require("./src/database/images.model");
 const path = require("path");
 const port = process.env.PORT || 3000;
 const bycrypt = require("bcryptjs");
