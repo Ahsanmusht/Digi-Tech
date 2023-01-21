@@ -239,21 +239,35 @@ window.onload = () => {
 const port = "https://digi-tech-production-9eb5.up.railway.app"
 
 const sKSignUp = () => {
+
   console.log("click");
   var obj = {
     name: document.getElementById("name").value,
     email: document.getElementById("email").value,
     password: document.getElementById("password").value,
-    confPassword: document.getElementById("confirmpassword").value,
-    image: document.getElementById("image").value,
+    confPassword: document.getElementById("confirmpassword").value
   }
   
   axios.post(port+'/signUp',{
     name:obj.name,
     email:obj.email, 
     password:obj.password,
-    confPassword:obj.confPassword,
-    image:obj.image
+    confPassword:obj.confPassword
+  }).then((response) =>{
+    console.log(response.data.message)
+    alert(response.data.message)
+  }).catch((err) =>{
+    console.log(err.response.data.message);
+  })
+  
+  
+  console.log("click");
+  var obj = {
+   image: document.getElementById('image').value
+
+}
+  axios.post(port+'/upload',{
+    image: obj.image,
   }).then((response) =>{
     console.log(response.data.message)
     alert(response.data.message)
@@ -262,3 +276,4 @@ const sKSignUp = () => {
   })
   return false;
 }
+

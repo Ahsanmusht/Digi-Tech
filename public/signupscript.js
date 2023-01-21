@@ -6,16 +6,14 @@ const signUp = () => {
         name: document.getElementById("name").value,
         email: document.getElementById("email").value,
         password: document.getElementById("password").value,
-        confPassword: document.getElementById("confPassword").value,
-        image: document.getElementById("image").value,
+        confPassword: document.getElementById("confPassword").value
     }
 
     axios.post(port + '/signUp', {
         name: obj.name,
         email: obj.email,
         password: obj.password,
-        confPassword: obj.confPassword,
-        image:obj.image
+        confPassword: obj.confPassword
     }).then((response) => {
         setInterval(() => {
             window.location.href = "login.html"
