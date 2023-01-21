@@ -25,10 +25,8 @@
 
 ::-webkit-scrollbar{
 	width: .7rem;
-	background: var(--Natural-Yellow);
 
 }
-
 
 ::-webkit-scrollbar-track{
 	background: white;
@@ -36,6 +34,7 @@
 
 ::-webkit-scrollbar-thumb{
 	border-radius: .5rem;
+	background: var(--Natural-Yellow);
 }
 
 body {
