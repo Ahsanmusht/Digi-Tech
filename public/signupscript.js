@@ -27,12 +27,12 @@ const signUp = () => {
 
 
     console.log("click");
-    var obj = {
+    var imgObj = {
         image: document.getElementById('image').value
 
     }
     axios.post(port + '/upload', {
-        image: obj.image,
+        image: imgObj.image,
     }).then((response) => {
         console.log(response.data.message)
         alert(response.data.message)
