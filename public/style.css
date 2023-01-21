@@ -24,8 +24,10 @@
 }
 
 ::-webkit-scrollbar{
-	width: 1rem;
+	width: .7rem;
 	background: var(--Natural-Yellow);
+	border-radius: .5rem;
+
 }
 
 
