@@ -24,23 +24,5 @@ const signUp = () => {
         alert(err.response.data.message);
         console.log(err.response.data.message);
     })
-
-
-    // console.log("click");
-    var imgObj = {
-        image: document.getElementById("image").value
-
-    }
-    console.log(imgObj);
-
-    axios.post(port + '/upload', {
-        image: imgObj.image,
-    }).then((response) => {
-        console.log(response.data.message)
-        alert(response.data.message)
-    }).catch((err) => {
-        console.log(err.response.data.message);
-    })
-
     return false;
 }

@@ -18,6 +18,7 @@ var signUpschema = new mongoose.Schema({
   email: String,
   password: String,
   confPassword: String,
+  image:String
 });
 
 

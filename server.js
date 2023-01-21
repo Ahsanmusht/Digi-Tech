@@ -11,11 +11,19 @@ const axios = require("axios");
 const jwt = require("jsonwebtoken");
 const cookieParser = require('cookie-parser');
 const multer = require("multer");
+const LocalStorage = require('local-storage');
 
 app.use(cookieParser());
+var imageData = uploadModel.find({})
 
 app.use(bodyParser.json());
 app.use("/", express.static(path.resolve(path.join(__dirname, "public"))));
+
+if(typeof localStorage === "undefined" || localStorage === null){
+  const LocalStorage = require('node-localstorage').localStorage;
+  localStorage = new LocalStorage('./scratch')
+}
+
 
 var Storage = multer.diskStorage({
   destination: "public/uploads/",
@@ -27,7 +35,7 @@ var Storage = multer.diskStorage({
 var upload = multer({
   storage:Storage
   
-}).single('image');
+}).single('file');
 
 app.post("/upload", upload, (req,res) =>{
   upload(req, res , (err) =>{
