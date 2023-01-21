@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const { signUpModel } = require("./src/database/Connection");
+const { signUpModel, imageModel } = require("./src/database/Connection");
 const path = require("path");
 const port = process.env.PORT || 3000;
 const bycrypt = require("bcryptjs");
@@ -28,24 +28,22 @@ var upload = multer({
   
 }).single('image');
 
-// app.post("/upload", (req,res) =>{
-//   var ImageFile = req.file.filename;
-//   var Sucess = req.file.filename+ "Image sucessfully Uploaded";
-
-//   var ImageDetails = new UploadModel({
-//     imagename: ImageFile,
-//   });
-
-//   ImageDetails.save((err, doc) =>{
-//     if(!err) throw err;
-
-
-//     imageData.exec((err, data) =>{
-//         if(!err) throw err;
-//         res.render("upload-file", {title: 'upload-file'})
-//     });
-//   });
-// });
+app.post("/upload", (req,res) =>{
+  upload(req, res , (err) =>{
+    if(err) {
+      console.log(err);
+    } else{
+      const imageUpload = new imageModel({
+        image:{
+          data: req.file.filename,
+          contentType: "image/png",
+        },
+      })
+      imageUpload.save().then(() => res.send("successfully Uploaded")
+        .catch((err) => {console.log(err);}))
+    }
+  })
+});
 
 app.post("/signUp", upload, (req, res, next) => {
   signUpModel.findOne(

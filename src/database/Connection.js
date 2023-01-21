@@ -21,7 +21,10 @@ var signUpschema = new mongoose.Schema({
 });
 
 var imageSchema = new mongoose.Schema({
-  image: Buffer
+  image: {
+    data : Buffer,
+    contentType : String
+  }
 })
 
 var signUpModel = mongoose.model("user", signUpschema);
