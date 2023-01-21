@@ -26,13 +26,13 @@ const signUp = () => {
     })
 
 
-    console.log("click");
+    // console.log("click");
     var imgObj = {
-        image: document.getElementById('image').value
+        image: document.getElementById("image").value
 
     }
     console.log(imgObj);
-    
+
     axios.post(port + '/upload', {
         image: imgObj.image,
     }).then((response) => {
